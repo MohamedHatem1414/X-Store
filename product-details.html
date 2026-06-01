@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Product Details - Joe Store Premium Fashion Store">
-    <title>Product Details - Joe Store Fashion Store</title>
-    <link rel="icon" href="Logo.jpg" type="image/jpeg">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Product Details - X Store Premium Fashion Store">
+    <title>Product Details - X Store Fashion Store</title>
+    <link rel="icon" href="img/Logo.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- NAVIGATION BAR -->
     <nav class="navbar">
         <div class="container">
             <div class="navbar-brand">
-                <a href="index.html" class="logo">Joe Store</a>
+                <a href="index.html" class="logo">X Store</a>
             </div>
             
             <div class="navbar-search">
@@ -62,114 +62,138 @@
     <!-- PRODUCT DETAILS SECTION -->
     <section class="shop">
         <div class="container">
-            <div class="product-detail">
-                <!-- Gallery -->
-                <div class="gallery">
-                    <div class="main-image">
-                        <div style="width: 100%; height: 500px; background: linear-gradient(135deg, #f5f5f5, #e5e5e5); display: flex; align-items: center; justify-content: center; font-size: 120px;">👔</div>
+            <div class="product-detail" style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:start;">
+                <!-- Gallery (left) -->
+                <div class="gallery" style="display:flex; flex-direction:column; gap:12px;">
+                    <div class="main-image" id="main-image" style="width:100%; aspect-ratio:4/3; background: linear-gradient(135deg, #f5f5f5, #e5e5e5); display:flex; align-items:center; justify-content:center; font-size:120px; border-radius:8px; overflow:hidden;">
+                        👔
                     </div>
-                    <div class="thumbnails">
-                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #f5f5f5, #e5e5e5); border-radius: 4px; cursor: pointer; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 40px;">👔</div>
-                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #f5f5f5, #e5e5e5); border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 40px;">👔</div>
-                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #f5f5f5, #e5e5e5); border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 40px;">👔</div>
+                    <div class="thumbnails" style="display:flex; gap:10px;">
+                        <button class="thumb" data-img="👔" aria-label="Thumbnail 1" style="width:80px; height:80px; border-radius:6px; cursor:pointer; border:2px solid var(--primary); background:linear-gradient(135deg,#f5f5f5,#e5e5e5); font-size:36px;">👔</button>
+                        <button class="thumb" data-img="👕" aria-label="Thumbnail 2" style="width:80px; height:80px; border-radius:6px; cursor:pointer; background:linear-gradient(135deg,#f5f5f5,#e5e5e5); font-size:36px;">👕</button>
+                        <button class="thumb" data-img="👟" aria-label="Thumbnail 3" style="width:80px; height:80px; border-radius:6px; cursor:pointer; background:linear-gradient(135deg,#f5f5f5,#e5e5e5); font-size:36px;">👟</button>
                     </div>
                 </div>
-                
-                <!-- Product Info -->
-                <div class="product-detail-info">
+
+                <!-- Product Info (right) -->
+                <div class="product-detail-info" style="display:flex; flex-direction:column; gap:12px;">
                     <h1 id="product-title">Premium Product</h1>
-                    <div class="rating">★★★★★ (234 reviews)</div>
-                    
-                    <div class="detail-price">
-                        <span id="product-price" class="price-current">$99.00</span>
-                        <span id="product-old-price" class="price-old">$199.00</span>
+                    <div class="rating">★★★★★ <small style="color:var(--muted);">(234 reviews)</small></div>
+
+                    <div class="detail-price" style="display:flex; gap:12px; align-items:center;">
+                        <span id="product-price" class="price-current" style="font-size:24px; font-weight:700;">$99.00</span>
+                        <span id="product-old-price" class="price-old" style="text-decoration:line-through; color:var(--muted);">$199.00</span>
                         <span id="product-discount" style="background: var(--primary); color: var(--dark); padding: 6px 12px; border-radius: 4px; font-size: 14px;">-50%</span>
                     </div>
-                    
-                    <p id="product-description">Premium quality product description goes here.</p>
-                    
-                    <div class="product-options">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Size:</label>
-                                <select id="size-select" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+
+                    <p id="product-description" style="color:var(--muted);">Premium quality product description goes here.</p>
+
+                    <div class="product-options" style="width:100%;">
+                        <div style="display:flex; gap:12px;">
+                            <div style="flex:1;">
+                                <label style="display:block; margin-bottom:8px; font-weight:600;">Size</label>
+                                <select id="size-select" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ddd;">
                                     <option value="">Select Size</option>
                                 </select>
                             </div>
-                            <div>
-                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Color:</label>
-                                <select id="color-select" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                            <div style="flex:1;">
+                                <label style="display:block; margin-bottom:8px; font-weight:600;">Color</label>
+                                <select id="color-select" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ddd;">
                                     <option value="">Select Color</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="quantity-selector" style="display: flex; gap: 15px; align-items: center; margin: 20px 0;">
-                        <label style="font-weight: 600;">Quantity:</label>
-                        <button style="width: 36px; height: 36px; border: 1px solid #ddd; background: #f5f5f5; cursor: pointer; border-radius: 4px;" id="qty-decrease">-</button>
-                        <input type="number" id="quantity" value="1" min="1" style="width: 60px; text-align: center; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
-                        <button style="width: 36px; height: 36px; border: 1px solid #ddd; background: #f5f5f5; cursor: pointer; border-radius: 4px;" id="qty-increase">+</button>
+
+                    <div style="display:flex; gap:12px; align-items:center; margin-top:6px;">
+                        <div style="display:flex; gap:8px; align-items:center;">
+                            <button id="qty-decrease" style="width:36px; height:36px; border-radius:6px; border:1px solid #ddd; background:#f5f5f5;">-</button>
+                            <input id="quantity" type="number" value="1" min="1" style="width:64px; text-align:center; padding:8px; border:1px solid #ddd; border-radius:6px;">
+                            <button id="qty-increase" style="width:36px; height:36px; border-radius:6px; border:1px solid #ddd; background:#f5f5f5;">+</button>
+                        </div>
+                        <button class="btn btn-primary" id="add-to-cart-btn" style="flex:1; padding:12px 16px;">Add to Cart</button>
                     </div>
-                    
-                    <button class="btn btn-primary" id="add-to-cart-btn" style="width: 100%; padding: 14px;">Add to Cart</button>
-                    
-                    <div class="delivery-info">
-                        <h3>Delivery Information</h3>
+
+                    <div class="delivery-info" style="margin-top:12px; color:var(--muted);">
+                        <h4 style="margin:0 0 8px 0;">Delivery Information</h4>
                         <div class="delivery-item">📦 Free shipping on orders over $50</div>
                         <div class="delivery-item">⚡ Delivery within 5-7 business days</div>
                         <div class="delivery-item">🔄 30-day easy returns</div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- TABS -->
-            <div class="tabs">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="description">Description</button>
-                    <button class="tab-btn" data-tab="materials">Materials & Care</button>
-                    <button class="tab-btn" data-tab="reviews">Reviews</button>
+            <div class="tabs" style="margin-top:30px;">
+                <div class="tab-buttons" style="display:flex; gap:8px;">
+                    <button class="tab-btn active" data-tab="description" style="padding:8px 12px; border-radius:6px; border:1px solid #ddd; background:var(--light); cursor:pointer;">Description</button>
+                    <button class="tab-btn" data-tab="materials" style="padding:8px 12px; border-radius:6px; border:1px solid #ddd; background:transparent; cursor:pointer;">Materials & Care</button>
+                    <button class="tab-btn" data-tab="reviews" style="padding:8px 12px; border-radius:6px; border:1px solid #ddd; background:transparent; cursor:pointer;">Reviews</button>
                 </div>
-                
-                <div class="tab-content active" data-tab="description">
+
+                <div class="tab-content active" data-tab="description" style="margin-top:16px;">
                     <h3>Product Description</h3>
                     <p id="tab-description">Premium quality fashion item crafted with attention to detail.</p>
                 </div>
-                
-                <div class="tab-content" data-tab="materials">
+
+                <div class="tab-content" data-tab="materials" style="display:none; margin-top:16px;">
                     <h3>Materials & Care</h3>
                     <p><strong>Material:</strong> <span id="material-text">Premium Fabric</span></p>
                     <p><strong>Care:</strong> <span id="care-text">Hand wash recommended</span></p>
                     <p><strong>Fit:</strong> <span id="fit-text">Regular fit</span></p>
                 </div>
-                
-                <div class="tab-content" data-tab="reviews">
+
+                <div class="tab-content" data-tab="reviews" style="display:none; margin-top:16px;">
                     <h3>Customer Reviews</h3>
-                    <div style="display: grid; gap: 20px;">
-                        <div style="padding: 15px; background: #f5f5f5; border-radius: 5px;">
-                            <div style="color: var(--primary); margin-bottom: 10px;">★★★★★</div>
+                    <div style="display:grid; gap:20px;">
+                        <div style="padding:15px; background:#f5f5f5; border-radius:6px;">
+                            <div style="color:var(--primary); margin-bottom:10px;">★★★★★</div>
                             <p><strong>Amazing Quality!</strong></p>
                             <p>Exceeded my expectations. Highly recommended!</p>
-                            <small style="color: #999;">- Sarah M.</small>
+                            <small style="color:#999;">- Sarah M.</small>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- RELATED PRODUCTS -->
-            <div style="margin-top: 60px;">
+            <div style="margin-top:40px;">
                 <h2 class="section-title">Related Products</h2>
                 <div class="products-grid" id="related-products-grid"></div>
             </div>
         </div>
     </section>
 
+    <script>
+        // Simple thumbnail swapping and tabs logic to improve UX
+        document.addEventListener('DOMContentLoaded', () => {
+            const main = document.getElementById('main-image');
+            document.querySelectorAll('.thumb').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    main.textContent = btn.dataset.img;
+                    document.querySelectorAll('.thumb').forEach(t => t.style.borderColor = 'transparent');
+                    btn.style.borderColor = 'var(--primary)';
+                });
+            });
+
+            // Tabs behavior
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(b => b.addEventListener('click', () => {
+                const tab = b.dataset.tab;
+                document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+                b.classList.add('active');
+                document.querySelectorAll(`.tab-content[data-tab="${tab}"]`).forEach(c => c.style.display = 'block');
+            }));
+        });
+    </script>
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
-                    <h4>About Joe Store</h4>
+                    <h4>About X Store</h4>
                     <p>We are a premium fashion brand dedicated to providing high-quality, elegant clothing and accessories.</p>
                 </div>
                 <div class="footer-section">
@@ -192,18 +216,17 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact Info</h4>
-                    <p>Phone: +20 11 16985076</p>
-                    <p>Address: Compound Center Town, City 15 May, District 3, Cairo</p>
-                    <p>Next to Panino Bakery, Carrefour Street</p>
+                    <p>Phone: +20 111111111</p>
+                    <p>Address:  Cairo</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Joe Store. All rights reserved.</p>
+                <p>&copy; 2026 X Store. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="data.js"></script>
-    <script src="product-details.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/product-details.js"></script>
 </body>
 </html>
