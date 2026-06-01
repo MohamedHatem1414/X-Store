@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Joe Store - Premium Fashion Store">
+    <title>Contact Us - Joe Store Premium Fashion Store</title>
+    <link rel="icon" href="Logo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html" class="logo">Joe</a>
+            </div>
+            
+            <div class="navbar-search">
+                <input type="text" placeholder="Search products..." class="search-input">
+                <button class="search-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <ul class="navbar-menu" id="navbar-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="products.html" class="nav-link">Shop</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+            
+            <div class="navbar-actions">
+                <button class="cart-btn" id="cart-btn" onclick="window.location.href='cart.html'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+            
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a> / <span>Contact Us</span>
+        </div>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <section class="shop">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0;">
+                <!-- CONTACT FORM -->
+                <div>
+                    <h3 style="font-size: 22px; margin-bottom: 25px; color: var(--dark);">Send us a Message</h3>
+                    <form id="contact-form" style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Name:</label>
+                            <input type="text" placeholder="Your Name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; font-size: 14px;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email:</label>
+                            <input type="email" placeholder="Your Email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; font-size: 14px;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Subject:</label>
+                            <input type="text" placeholder="Message Subject" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; font-size: 14px;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Message:</label>
+                            <textarea placeholder="Your Message" rows="6" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; font-size: 14px; resize: none;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- CONTACT INFO -->
+                <div>
+                    <h3 style="font-size: 22px; margin-bottom: 25px; color: var(--dark);">Contact Information</h3>
+                    
+                    <div style="display: flex; gap: 15px; margin-bottom: 25px; padding: 20px; background: var(--gray); border-radius: 8px; border-left: 4px solid var(--primary);">
+                        <div style="font-size: 32px;">📍</div>
+                        <div>
+                            <h4 style="font-weight: 700; margin-bottom: 5px; font-size: 16px;">Our Location</h4>
+                            <p style="color: var(--text-light); font-size: 14px; line-height: 1.6;">
+                                Compound Center Town<br>
+                                City 15 May, District 3<br>
+                                Cairo, Egypt<br>
+                                Next to Panino Bakery, Carrefour Street
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; margin-bottom: 25px; padding: 20px; background: var(--gray); border-radius: 8px; border-left: 4px solid var(--primary);">
+                        <div style="font-size: 32px;">📱</div>
+                        <div>
+                            <h4 style="font-weight: 700; margin-bottom: 5px; font-size: 16px;">Phone</h4>
+                            <p style="color: var(--text-light); font-size: 14px;">
+                                <a href="tel:+201116985076" style="color: var(--primary); text-decoration: none;">+20 11 16985076</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; margin-bottom: 25px; padding: 20px; background: var(--gray); border-radius: 8px; border-left: 4px solid var(--primary);">
+                        <div style="font-size: 32px;">⏰</div>
+                        <div>
+                            <h4 style="font-weight: 700; margin-bottom: 5px; font-size: 16px;">Business Hours</h4>
+                            <p style="color: var(--text-light); font-size: 14px; line-height: 1.6;">
+                                Saturday - Thursday: 10:00 AM - 10:00 PM<br>
+                                Friday: 2:00 PM - 10:00 PM<br>
+                                Closed on Holidays
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; padding: 20px; background: var(--gray); border-radius: 8px; border-left: 4px solid var(--primary);">
+                        <div style="font-size: 32px;">💬</div>
+                        <div>
+                            <h4 style="font-weight: 700; margin-bottom: 5px; font-size: 16px;">Response Time</h4>
+                            <p style="color: var(--text-light); font-size: 14px;">
+                                We typically respond within 24 hours during business hours.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>About Joe Store</h4>
+                    <p>We are a premium fashion brand dedicated to providing high-quality, elegant clothing and accessories.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>Phone: +20 11 16985076</p>
+                    <p>Address: Compound Center Town, City 15 May, District 3, Cairo</p>
+                    <p>Next to Panino Bakery, Carrefour Street</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Joe Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCounter();
+            const toggle = document.getElementById('menu-toggle');
+            const menu = document.getElementById('navbar-menu');
+            if (toggle && menu) {
+                toggle.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                });
+            }
+
+            // Handle contact form
+            const form = document.getElementById('contact-form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const notification = document.createElement('div');
+                    notification.style.cssText = `
+                        position: fixed;
+                        top: 100px;
+                        right: 20px;
+                        background: #4CAF50;
+                        color: white;
+                        padding: 1rem 2rem;
+                        border-radius: 5px;
+                        z-index: 1000;
+                    `;
+                    notification.textContent = 'Thank you! We will contact you soon.';
+                    document.body.appendChild(notification);
+                    form.reset();
+                    setTimeout(() => notification.remove(), 3000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Joe Store - Premium Fashion Store">
+    <title>About Us - Joe Store Premium Fashion Store</title>
+    <link rel="icon" href="Logo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html" class="logo">Joe Store</a>
+            </div>
+            
+            <div class="navbar-search">
+                <input type="text" placeholder="Search products..." class="search-input">
+                <button class="search-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <ul class="navbar-menu" id="navbar-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="products.html" class="nav-link">Shop</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="navbar-actions">
+                <button class="cart-btn" id="cart-btn" onclick="window.location.href='cart.html'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+            
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a> / <span>About Us</span>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <section class="shop">
+        <div class="container">
+            <h2 class="section-title">About Joe Store</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; align-items: center;">
+                <div style="font-size: 80px; text-align: center; background: linear-gradient(135deg, #f5f5f5, #e5e5e5); padding: 40px; border-radius: 10px;">
+                    👑
+                </div>
+                <div>
+                    <h3 style="font-size: 28px; margin-bottom: 20px; color: var(--dark);">Premium Fashion Excellence</h3>
+                    <p style="font-size: 16px; color: var(--text-light); line-height: 1.8; margin-bottom: 15px;">
+                        Joe Store is a luxury fashion brand dedicated to delivering exceptional quality and timeless style. 
+                        With years of expertise in the fashion industry, we carefully curate every piece to ensure 
+                        our customers experience true premium fashion.
+                    </p>
+                    <p style="font-size: 16px; color: var(--text-light); line-height: 1.8; margin-bottom: 15px;">
+                        Our mission is to provide elegant, sophisticated clothing and accessories that empower 
+                        individuals to express their unique style. We believe fashion is an art form that should be 
+                        accessible to everyone who appreciates quality and craftsmanship.
+                    </p>
+                    <p style="font-size: 16px; color: var(--text-light); line-height: 1.8;">
+                        Every product in our collection is handpicked and tested for quality, durability, and style. 
+                        We partner with the finest manufacturers around the world to bring you collections that stand the test of time.
+                    </p>
+                </div>
+            </div>
+
+            <!-- VALUES SECTION -->
+            <div style="margin: 60px 0;">
+                <h3 style="font-size: 28px; text-align: center; margin-bottom: 40px; color: var(--dark);">Our Core Values</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">✨</div>
+                        <h4 style="font-size: 18px; margin-bottom: 10px;">Quality</h4>
+                        <p>We never compromise on quality. Every item is carefully selected for its craftsmanship and durability.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎨</div>
+                        <h4 style="font-size: 18px; margin-bottom: 10px;">Style</h4>
+                        <p>Fashion is our passion. We create collections that reflect contemporary trends while maintaining timeless elegance.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🤝</div>
+                        <h4 style="font-size: 18px; margin-bottom: 10px;">Customer Focus</h4>
+                        <p>Your satisfaction is our priority. We provide exceptional service and support to ensure the best experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>About Joe Store</h4>
+                    <p>We are a premium fashion brand dedicated to providing high-quality, elegant clothing and accessories.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>Phone: +20 11 16985076</p>
+                    <p>Address: Compound Center Town, City 15 May, District 3, Cairo</p>
+                    <p>Next to Panino Bakery, Carrefour Street</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Joe Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCounter();
+            const toggle = document.getElementById('menu-toggle');
+            const menu = document.getElementById('navbar-menu');
+            if (toggle && menu) {
+                toggle.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
