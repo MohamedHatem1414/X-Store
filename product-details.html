@@ -44,7 +44,7 @@
                 </button>
             </div>
             
-            <button class="menu-toggle" id="menu-toggle">
+            <button type="button" class="menu-toggle" id="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -64,14 +64,14 @@
         <div class="container">
             <div class="product-detail" style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:start;">
                 <!-- Gallery (left) -->
-                <div class="gallery" style="display:flex; flex-direction:column; gap:12px;">
-                    <div class="main-image" id="main-image" style="width:100%; aspect-ratio:4/3; background: linear-gradient(135deg, #f5f5f5, #e5e5e5); display:flex; align-items:center; justify-content:center; font-size:120px; border-radius:8px; overflow:hidden;">
-                        👔
+                <div class="gallery product-gallery" style="display:flex; flex-direction:column; gap:12px;">
+                    <div class="product-main-image" style="width:100%; aspect-ratio:4/3; background: linear-gradient(135deg, #f5f5f5, #e5e5e5); border-radius:14px; overflow:hidden; border:1px solid var(--gray-dark); box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
+                        <img src="img/Logo.png" alt="Product image" style="width:100%; height:100%; object-fit:cover; display:block;">
                     </div>
-                    <div class="thumbnails" style="display:flex; gap:10px;">
-                        <button class="thumb" data-img="👔" aria-label="Thumbnail 1" style="width:80px; height:80px; border-radius:6px; cursor:pointer; border:2px solid var(--primary); background:linear-gradient(135deg,#f5f5f5,#e5e5e5); font-size:36px;">👔</button>
-                        <button class="thumb" data-img="👕" aria-label="Thumbnail 2" style="width:80px; height:80px; border-radius:6px; cursor:pointer; background:linear-gradient(135deg,#f5f5f5,#e5e5e5); font-size:36px;">👕</button>
-                        <button class="thumb" data-img="👟" aria-label="Thumbnail 3" style="width:80px; height:80px; border-radius:6px; cursor:pointer; background:linear-gradient(135deg,#f5f5f5,#e5e5e5); font-size:36px;">👟</button>
+                    <div class="thumb-slider">
+                        <button type="button" class="thumb-nav" id="thumb-prev" aria-label="Show previous images">←</button>
+                        <div class="product-thumbs"></div>
+                        <button type="button" class="thumb-nav" id="thumb-next" aria-label="Show next images">→</button>
                     </div>
                 </div>
 
@@ -159,34 +159,11 @@
             <!-- RELATED PRODUCTS -->
             <div style="margin-top:40px;">
                 <h2 class="section-title">Related Products</h2>
-                <div class="products-grid" id="related-products-grid"></div>
+                <div class="products-grid" id="relatedProductsGrid"></div>
             </div>
         </div>
     </section>
 
-    <script>
-        // Simple thumbnail swapping and tabs logic to improve UX
-        document.addEventListener('DOMContentLoaded', () => {
-            const main = document.getElementById('main-image');
-            document.querySelectorAll('.thumb').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    main.textContent = btn.dataset.img;
-                    document.querySelectorAll('.thumb').forEach(t => t.style.borderColor = 'transparent');
-                    btn.style.borderColor = 'var(--primary)';
-                });
-            });
-
-            // Tabs behavior
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            tabButtons.forEach(b => b.addEventListener('click', () => {
-                const tab = b.dataset.tab;
-                document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
-                b.classList.add('active');
-                document.querySelectorAll(`.tab-content[data-tab="${tab}"]`).forEach(c => c.style.display = 'block');
-            }));
-        });
-    </script>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -227,6 +204,7 @@
     </footer>
 
     <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
     <script src="js/product-details.js"></script>
 </body>
 </html>

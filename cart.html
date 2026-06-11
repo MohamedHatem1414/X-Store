@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- NAVIGATION BAR -->
     <nav class="navbar">
         <div class="container">
             <div class="navbar-brand">
@@ -44,7 +43,7 @@
                 </button>
             </div>
             
-            <button class="menu-toggle" id="menu-toggle">
+            <button type="button" class="menu-toggle" id="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -52,14 +51,12 @@
         </div>
     </nav>
 
-    <!-- BREADCRUMB -->
     <div class="breadcrumb">
         <div class="container">
             <a href="index.html">Home</a> / <span>Shopping Cart</span>
         </div>
     </div>
 
-    <!-- CART SECTION -->
     <section class="cart-section">
         <div class="container">
             <h2 class="section-title">Your Shopping Cart</h2>
@@ -67,8 +64,7 @@
             <div class="cart-wrapper" id="cart-container">
                 <div class="cart-items-wrapper">
                     <div class="cart-items" id="cart-items-body">
-                        <!-- Cart items will be inserted here -->
-                    </div>
+                        </div>
                     <div id="empty-cart-message" style="text-align: center; padding: 60px 40px; background: var(--gray); border-radius: 10px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
                         <div style="font-size: 64px;">🛒</div>
                         <h3 style="font-size: 24px; color: var(--dark);">Your cart is empty</h3>
@@ -77,47 +73,38 @@
                     </div>
                 </div>
                 
-                <div class="cart-sidebar">
-                    <div class="order-summary">
-                        <h3>Order Summary</h3>
-                        
-                        <div class="summary-item">
-                            <span class="summary-label">Subtotal:</span>
-                            <span class="summary-value" id="subtotal">$0.00</span>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <span class="summary-label">Shipping:</span>
-                            <span class="summary-value" id="shipping">Free</span>
-                        </div>
-                        
-                        <div class="summary-item">
-                            <span class="summary-label">Tax (10%):</span>
-                            <span class="summary-value" id="tax">$0.00</span>
-                        </div>
-                        
-                        <div class="summary-divider"></div>
-                        
-                        <div class="summary-total">
-                            <span class="summary-label">Total:</span>
-                            <span class="summary-value" id="total">$0.00</span>
-                        </div>
-                        
-                        <button class="btn btn-primary" style="width: 100%; margin-top: 25px; padding: 15px;">Proceed to Checkout</button>
-                        <a href="products.html" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: 12px; padding: 15px;">Continue Shopping</a>
-                    </div>
-                    
-                    <div class="promo-box">
-                        <h4>Promo Code</h4>
-                        <input type="text" placeholder="Enter promo code" style="width: 100%; padding: 10px; border: 1px solid var(--gray-dark); border-radius: 5px; margin-bottom: 10px; font-family: inherit;">
-                        <button class="btn btn-secondary" style="width: 100%; padding: 10px; font-size: 13px;">Apply Code</button>
-                    </div>
-                </div>
+<div class="cart-sidebar">
+    
+    <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-item">
+            <span>Subtotal</span>
+            <span id="cart-subtotal">$0.00</span>
+        </div>
+        <div class="summary-item">
+            <span>Tax (10%)</span>
+            <span id="cart-tax">$0.00</span>
+        </div>
+        <div class="summary-item summary-total">
+            <span>Total</span>
+            <span id="cart-total" class="summary-value">$0.00</span>
+        </div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+
+    <div class="coupon-section">
+        <h4>Have a Coupon?</h4>
+        <div class="coupon-input-group">
+            <input type="text" placeholder="Enter coupon code" id="coupon-code">
+            <button id="apply-coupon-btn">Apply</button>
+        </div>
+    </div>
+
+</div>
             </div>
         </div>
     </section>
 
-    <!-- BENEFITS -->
     <section class="benefits">
         <div class="container">
             <div class="benefits-grid">
@@ -140,7 +127,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">

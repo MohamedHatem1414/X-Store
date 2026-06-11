@@ -42,116 +42,165 @@ function loadProductDetails() {
   document.getElementById('product-old-price').textContent = `$${product.oldPrice}`;
   document.getElementById('product-discount').textContent = `-${product.discount}%`;
   
+  // Update rating text
+  const ratingLabel = document.querySelector('.rating small');
+  if (ratingLabel) {
+    ratingLabel.textContent = `${product.rating} / 5 (${product.reviews} customer reviews)`;
+  }
+  
   // Update description
-  document.getElementById('product-description').textContent = product.description;
-  document.getElementById('tab-description').textContent = product.description;
+  const descriptionEl = document.getElementById('product-description');
+  if (descriptionEl) descriptionEl.textContent = product.description;
+  const tabDescriptionEl = document.getElementById('tab-description');
+  if (tabDescriptionEl) tabDescriptionEl.textContent = product.description;
   
-  // Update materials
-  document.getElementById('material-text').textContent = product.material;
-  document.getElementById('care-text').textContent = product.care;
-  document.getElementById('fit-text').textContent = product.fit;
+  // Update images
+  const mainImageContainer = document.querySelector('.product-main-image');
+  mainImageContainer.innerHTML = `<img src="${product.image}" alt="${product.name}" id="main-product-img" style="width: 100%; height: 100%; object-fit: cover;">`;
   
-  // Setup size and color selects
-  setupSizeSelector(product);
-  setupColorSelector(product);
+  const thumbsContainer = document.querySelector('.product-thumbs');
+  thumbsContainer.innerHTML = '';
+  
+  if (product.images && product.images.length > 0) {
+    product.images.forEach((imgStr, index) => {
+      const thumb = document.createElement('div');
+      thumb.className = `thumb-img ${index === 0 ? 'active' : ''}`;
+      thumb.innerHTML = `<img src="${imgStr}" style="width: 100%; height: 100%; object-fit: cover;">`;
+      thumbsContainer.appendChild(thumb);
+    });
+    setupThumbnails();
+  }
+  
+  // Populate options
+  populateOptions(product);
+  
+  // Populate specs tab
+  const materialEl = document.getElementById('material-text');
+  if (materialEl) materialEl.textContent = product.material || 'N/A';
+  const careEl = document.getElementById('care-text');
+  if (careEl) careEl.textContent = product.care || 'N/A';
+  const fitEl = document.getElementById('fit-text');
+  if (fitEl) fitEl.textContent = product.fit || 'N/A';
 }
 
-function setupSizeSelector(product) {
-  const sizeSelect = document.getElementById('size-select');
-  sizeSelect.innerHTML = '<option value="">Select Size</option>';
-  
-  product.sizes.forEach(size => {
-    const option = document.createElement('option');
-    option.value = size;
-    option.textContent = size;
-    sizeSelect.appendChild(option);
+function setupThumbnails() {
+  const thumbs = document.querySelectorAll('.thumb-img');
+  const thumbsContainer = document.querySelector('.product-thumbs');
+  const mainImage = document.getElementById('main-product-img');
+
+  thumbs.forEach((thumb, index) => {
+    thumb.addEventListener('click', () => {
+      thumbs.forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+
+      const clickedImgSrc = thumb.querySelector('img').src;
+      if (mainImage) mainImage.src = clickedImgSrc;
+    });
+
+    thumb.setAttribute('aria-label', `View image ${index + 1}`);
   });
+
+  const prevBtn = document.getElementById('thumb-prev');
+  const nextBtn = document.getElementById('thumb-next');
+
+  if (prevBtn && nextBtn && thumbsContainer) {
+    prevBtn.addEventListener('click', () => {
+      thumbsContainer.scrollBy({ left: -120, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      thumbsContainer.scrollBy({ left: 120, behavior: 'smooth' });
+    });
+  }
 }
 
-function setupColorSelector(product) {
+function populateOptions(product) {
   const colorSelect = document.getElementById('color-select');
-  colorSelect.innerHTML = '<option value="">Select Color</option>';
-  
-  product.colors.forEach(color => {
-    const option = document.createElement('option');
-    option.value = color;
-    option.textContent = color;
-    colorSelect.appendChild(option);
-  });
-}
+  const sizeSelect = document.getElementById('size-select');
 
-function setupAddToCart() {
-  const productId = getProductIdFromURL();
-  const product = getProductById(productId);
-  const addBtn = document.getElementById('add-to-cart-btn');
+  if (colorSelect && product.colors) {
+    colorSelect.innerHTML = '<option value="">Select Color</option>' +
+      product.colors.map((color) => `<option value="${color}">${color}</option>`).join('');
+  }
+
+  if (sizeSelect && product.sizes) {
+    sizeSelect.innerHTML = '<option value="">Select Size</option>' +
+      product.sizes.map((size) => `<option value="${size}">${size}</option>`).join('');
+  }
+
+  // Setup quantity controls
+  const minusBtn = document.getElementById('qty-decrease');
+  const plusBtn = document.getElementById('qty-increase');
   const qtyInput = document.getElementById('quantity');
-  const qtyIncrease = document.getElementById('qty-increase');
-  const qtyDecrease = document.getElementById('qty-decrease');
-  const sizeSelect = document.getElementById('size-select');
-  const colorSelect = document.getElementById('color-select');
-  
-  qtyIncrease.addEventListener('click', () => {
-    qtyInput.value = Math.max(1, parseInt(qtyInput.value) + 1);
-  });
-  
-  qtyDecrease.addEventListener('click', () => {
-    qtyInput.value = Math.max(1, parseInt(qtyInput.value) - 1);
-  });
-  
-  addBtn.addEventListener('click', () => {
-    const quantity = parseInt(qtyInput.value) || 1;
-    const size = sizeSelect.value;
-    const color = colorSelect.value;
-    
-    if (!size) {
-      showNotification('Please select a size');
-      return;
-    }
-    if (!color) {
-      showNotification('Please select a color');
-      return;
-    }
-    
-    addToCart(product.id, quantity, size, color);
-    showNotification('Added to cart!');
-    qtyInput.value = 1;
-  });
+
+  if (minusBtn && plusBtn && qtyInput) {
+    minusBtn.addEventListener('click', () => {
+      let val = parseInt(qtyInput.value) || 1;
+      if (val > 1) qtyInput.value = val - 1;
+    });
+
+    plusBtn.addEventListener('click', () => {
+      let val = parseInt(qtyInput.value) || 1;
+      qtyInput.value = val + 1;
+    });
+  }
 }
 
 function setupTabs() {
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabContents = document.querySelectorAll('.tab-content');
+  const tabs = document.querySelectorAll('.tab-btn');
+  const contents = document.querySelectorAll('.tab-content');
   
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const tabName = button.dataset.tab;
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
       
-      // Remove active from all
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      tabContents.forEach(content => content.classList.remove('active'));
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
       
-      // Add active to clicked
-      button.classList.add('active');
-      document.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
+      tab.classList.add('active');
+      const contentEl = document.getElementById(`${target}-tab`);
+      if (contentEl) contentEl.classList.add('active');
     });
   });
 }
 
+function setupAddToCart() {
+  const addBtn = document.getElementById('add-to-cart-btn');
+  if (!addBtn) return;
+
+  addBtn.addEventListener('click', () => {
+    const productId = getProductIdFromURL();
+    const qtyInput = document.getElementById('quantity');
+    const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+
+    const colorSelect = document.getElementById('color-select');
+    const sizeSelect = document.getElementById('size-select');
+
+    const color = colorSelect ? colorSelect.value : '';
+    const size = sizeSelect ? sizeSelect.value : '';
+
+    addToCart(productId, quantity, size, color);
+    showNotification('Added to cart successfully!');
+  });
+}
+
 function loadRelatedProducts() {
-  const productId = getProductIdFromURL();
-  const relatedProducts = getRelatedProducts(productId);
-  const container = document.getElementById('related-products-grid');
+  const container = document.getElementById('relatedProductsGrid');
+  if (!container) return;
   
-  if (!container || relatedProducts.length === 0) return;
+  const productId = getProductIdFromURL();
+  const related = getRelatedProducts(productId);
   
   container.innerHTML = '';
-  relatedProducts.forEach(product => {
+  
+  related.forEach(product => {
     const card = document.createElement('div');
     card.className = 'product-card';
+    
     card.innerHTML = `
-      <div style="position: relative;">
-        <div class="product-image">${product.image}</div>
-        <span class="product-discount">-${product.discount}%</span>
+      <div class="product-badge">-${product.discount}%</div>
+      <div class="product-image">
+        <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
       <div class="product-info">
         <h3 class="product-name">${product.name}</h3>

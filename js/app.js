@@ -12,7 +12,7 @@ function setupMenuToggle() {
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('navbar-menu');
   
-  if (toggle) {
+  if (toggle && menu) {
     toggle.addEventListener('click', () => {
       menu.classList.toggle('active');
     });
@@ -49,10 +49,11 @@ function renderProducts(productList, container) {
   productList.forEach(product => {
     const card = document.createElement('div');
     card.className = 'product-card';
+    
     card.innerHTML = `
-      <div style="position: relative;">
-        <div class="product-image">👔</div>
-        <span class="product-discount">-${product.discount}%</span>
+      <div class="product-badge">-${product.discount}%</div>
+      <div class="product-image">
+        <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
       <div class="product-info">
         <h3 class="product-name">${product.name}</h3>
@@ -61,17 +62,25 @@ function renderProducts(productList, container) {
           <span class="price-old">$${product.oldPrice}</span>
         </div>
         <div class="product-actions">
-          <button class="quick-view-btn" data-id="${product.id}">Quick View</button>
-          <button class="add-cart-btn" data-id="${product.id}">Add to Cart</button>
+          <button class="quick-view-btn">Quick View</button>
+          <button class="add-cart-btn">Add to Cart</button>
         </div>
       </div>
     `;
     
-    card.querySelector('.quick-view-btn').addEventListener('click', () => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('button')) return;
+      window.location.href = `product-details.html?id=${product.id}`;
+    });
+
+    card.querySelector('.quick-view-btn').addEventListener('click', (event) => {
+      event.stopPropagation();
       window.location.href = `product-details.html?id=${product.id}`;
     });
     
-    card.querySelector('.add-cart-btn').addEventListener('click', () => {
+    card.querySelector('.add-cart-btn').addEventListener('click', (event) => {
+      event.stopPropagation();
       addToCart(product.id, 1);
       showNotification('Added to cart!');
     });
@@ -116,17 +125,3 @@ function showNotification(message) {
     setTimeout(() => notification.remove(), 300);
   }, 3000);
 }
-
-// Add stylesheet for animations
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes slideIn {
-    from { transform: translateX(400px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-  }
-  @keyframes slideOut {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(400px); opacity: 0; }
-  }
-`;
-document.head.appendChild(style);

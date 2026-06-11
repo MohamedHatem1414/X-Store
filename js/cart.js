@@ -1,27 +1,35 @@
-// Setup on page load
+// تشغيل العمليات فور تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => {
   setupMenuToggle();
   updateCartCounter();
   displayCart();
-  setupRemoveButtons();
 });
 
+// دالة التحكم في المنيو والقائمة الجانبية للشاشات الصغيرة
 function setupMenuToggle() {
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('navbar-menu');
   
   if (toggle && menu) {
-    toggle.addEventListener('click', () => {
+    // إزالة أي أحداث سابقة لتفادي التكرار
+    const newToggle = toggle.cloneNode(true);
+    toggle.parentNode.replaceChild(newToggle, toggle);
+
+    newToggle.addEventListener('click', (e) => {
+      e.preventDefault();
       menu.classList.toggle('active');
     });
   }
 }
 
+// دالة عرض المنتجات في السلة
 function displayCart() {
   const cart = getCart();
   const container = document.getElementById('cart-items-body');
   const emptyMessage = document.getElementById('empty-cart-message');
   
+  if (!container || !emptyMessage) return;
+
   if (cart.length === 0) {
     emptyMessage.style.display = 'flex';
     container.innerHTML = '';
@@ -34,48 +42,57 @@ function displayCart() {
   
   cart.forEach((item, index) => {
     const itemTotal = item.price * item.quantity;
-    const product = getProductById(item.id);
-    const imageEmoji = product ? product.image : (item.image || '👔');
+    const row = document.createElement('div');
+    row.className = 'cart-item';
     
-    const cartItem = document.createElement('div');
-    cartItem.className = 'cart-item';
-    cartItem.innerHTML = `
-      <div class="cart-item-image">${imageEmoji}</div>
-      <div class="cart-item-details">
-        <h4>${item.name}</h4>
-        <p style="margin: 0;">Size: <strong>${item.size}</strong> | Color: <strong>${item.color}</strong></p>
-        <p class="cart-item-price" style="margin: 5px 0 0 0;">$${item.price.toFixed(2)}</p>
+    row.innerHTML = `
+      <div class="cart-item-info">
+        <div class="cart-item-image">
+          <img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+        </div>
+        <div class="cart-item-details">
+          <h3 class="cart-item-name">${item.name}</h3>
+          <p class="cart-item-meta">Size: ${item.size} | Color: ${item.color}</p>
+          <span class="cart-item-price">$${item.price}</span>
+        </div>
       </div>
-      <div class="cart-quantity-control">
-        <button class="qty-btn" data-index="${index}" data-action="decrease">−</button>
-        <input type="number" value="${item.quantity}" readonly>
+      
+      <div class="cart-item-quantity">
+        <button class="qty-btn" data-index="${index}" data-action="decrease">-</button>
+        <span class="qty-value">${item.quantity}</span>
         <button class="qty-btn" data-index="${index}" data-action="increase">+</button>
       </div>
-      <div class="cart-item-total">$${itemTotal.toFixed(2)}</div>
-      <button class="cart-item-remove remove-btn" data-index="${index}" title="Remove item">×</button>
+      
+      <div class="cart-item-total">
+        $${itemTotal}
+      </div>
+      
+      <button class="remove-item-btn" data-index="${index}">&times;</button>
     `;
     
-    container.appendChild(cartItem);
+    container.appendChild(row);
   });
   
-  setupRemoveButtons();
   setupQuantityButtons();
+  setupRemoveButtons();
   updateCartSummary(cart);
 }
 
+// دالة التحكم في حذف منتج من السلة
 function setupRemoveButtons() {
-  document.querySelectorAll('.remove-btn').forEach(btn => {
+  document.querySelectorAll('.remove-item-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const index = e.target.dataset.index;
       const cart = getCart();
       cart.splice(index, 1);
       saveCart(cart);
-      updateCartCounter();
+      if (typeof updateCartCounter === 'function') updateCartCounter();
       displayCart();
     });
   });
 }
 
+// دالة التحكم في زيادة ونقصان الكمية
 function setupQuantityButtons() {
   document.querySelectorAll('.qty-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -90,12 +107,13 @@ function setupQuantityButtons() {
       }
       
       saveCart(cart);
-      updateCartCounter();
+      if (typeof updateCartCounter === 'function') updateCartCounter();
       displayCart();
     });
   });
 }
 
+// دالة تحديث ملخص الحسابات الإجمالية للطلب
 function updateCartSummary(cart) {
   let subtotal = 0;
   
@@ -106,7 +124,11 @@ function updateCartSummary(cart) {
   const tax = subtotal * 0.1; // 10% tax
   const total = subtotal + tax;
   
-  document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-  document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
-  document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+  const subtotalEl = document.getElementById('cart-subtotal');
+  const taxEl = document.getElementById('cart-tax');
+  const totalEl = document.getElementById('cart-total');
+  
+  if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+  if (taxEl) taxEl.textContent = `$${tax.toFixed(2)}`;
+  if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
 }
